@@ -1,0 +1,31 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "poetry install && poetry update && poetry run python manage.py migrate",
+  "postCreateCommand": "",
+  "postAttachCommand": {
+    "server": "poetry run python manage.py runserver"
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "hello_world/templates/index.html"
+      ]
+    },
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "8000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [8000]
+}
